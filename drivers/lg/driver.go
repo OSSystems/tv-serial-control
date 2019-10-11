@@ -32,18 +32,15 @@ func (l *driver) Initialize(device string) error {
 		ReadTimeout: time.Second,
 	})
 
-	l.port = port
-
-	return err
-}
-
-func (l *driver) InitializeDevice() (map[string]interface{}, error) {
-	res, err := Command(PowerStatusCmd).Send(l.port)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return res, nil
+	l.port = port
+
+	_, err = Command(PowerStatusCmd).Send(l.port)
+
+	return err
 }
 
 func (l *driver) AvailableCommands() []string {

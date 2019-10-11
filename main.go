@@ -46,7 +46,7 @@ func main() {
 	if err := driver.Initialize(opts.Device); err != nil {
 		logrus.WithFields(logrus.Fields{
 			"err": err,
-		}).Panic("Failed to initialize driver")
+		}).Warn("Failed to initialize driver, maybe device is not properly connected")
 	}
 
 	logrus.WithFields(logrus.Fields{
@@ -54,13 +54,6 @@ func main() {
 		"device":   opts.Device,
 		"commands": driver.AvailableCommands(),
 	}).Info("Driver loaded")
-
-	_, err = driver.InitializeDevice()
-	if err != nil {
-
-		logrus.Warn("Could not connect with the device  over serial port, there's no response''")
-
-	}
 
 	e.GET("/driver", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, echo.Map{

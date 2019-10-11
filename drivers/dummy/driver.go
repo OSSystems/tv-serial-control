@@ -26,10 +26,6 @@ func (d *driver) Initialize(device string) error {
 	return nil
 }
 
-func (d *driver) InitializeDevice() (map[string]interface{}, error) {
-	return map[string]interface{}{}, nil
-}
-
 func (l *driver) AvailableCommands() []string {
 	return []string{"echo"}
 }
