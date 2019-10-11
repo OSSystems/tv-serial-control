@@ -49,15 +49,14 @@ func main() {
 		}).Panic("Failed to initialize driver")
 	}
 
-
 	logrus.WithFields(logrus.Fields{
 		"driver":   opts.Driver,
 		"device":   opts.Device,
 		"commands": driver.AvailableCommands(),
 	}).Info("Driver loaded")
 
-	_,err=driver.InitializeDevice()
-	if err!= nil{
+	_, err = driver.InitializeDevice()
+	if err != nil {
 
 		logrus.Warn("Could not connect with the device  over serial port, there's no response''")
 

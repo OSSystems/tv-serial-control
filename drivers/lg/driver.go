@@ -38,14 +38,13 @@ func (l *driver) Initialize(device string) error {
 }
 
 func (l *driver) InitializeDevice() (map[string]interface{}, error) {
-
-		res, err := Command(PowerStatusCmd).Send(l.port)
+	res, err := Command(PowerStatusCmd).Send(l.port)
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 
-		return res,nil
-	}
+	return res, nil
+}
 
 func (l *driver) AvailableCommands() []string {
 	keys := make([]string, 0, len(cmds))
